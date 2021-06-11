@@ -1,0 +1,4 @@
+INFO	2021-06-11 11:26:40,563	0	transferLog	[http-nio-5500-exec-1]	1623392800D-2012590519 Transaction{ com.elantsev.netology.moneytf.model.Card@5734df64 , cardToNumber='1234444441232132', amount=Amount{value=12300, currency='RUR'}}
+INFO	2021-06-11 11:29:52,893	0	transferLog	[http-nio-5500-exec-1]	1623392992D-1494702476 Transaction{ Card{cardNumber='1231232132131232', amount=Amount{value=31232100, currency='RUR'}} , cardToNumber='3213131231231231', amount=Amount{value=31232100, currency='RUR'}}
+INFO	2021-06-11 11:32:09,423	0	transferLog	[http-nio-5500-exec-1]	ЗАПРОС НА ПЕРЕВОД 1623393129D-1014460809 Transaction{ Card{cardNumber='2432342343242342', amount=Amount{value=12312300, currency='RUR'}} , cardToNumber='1232132132143412', amount=Amount{value=12312300, currency='RUR'}}
+INFO	2021-06-11 11:32:09,467	44	transferLog	[http-nio-5500-exec-3]	Перевод подтвержден Verificator{operationId='1623393129D-1014460809', code='0000'}
