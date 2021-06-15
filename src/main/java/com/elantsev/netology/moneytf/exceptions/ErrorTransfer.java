@@ -1,4 +1,4 @@
-package com.elantsev.netology.moneytf.Exceptions;
+package com.elantsev.netology.moneytf.exceptions;
 
 public class ErrorTransfer extends RuntimeException{
     public ErrorTransfer(){

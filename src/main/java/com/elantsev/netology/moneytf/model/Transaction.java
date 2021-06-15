@@ -1,5 +1,7 @@
 package com.elantsev.netology.moneytf.model;
 
+import com.google.gson.Gson;
+
 import java.util.Objects;
 
 public class Transaction {
@@ -51,5 +53,11 @@ public class Transaction {
     @Override
     public int hashCode() {
         return Objects.hash(cardFrom, cardToNumber, amount);
+    }
+
+    public String toJSON(){
+        Gson gson = new Gson();
+        String json = gson.toJson(this);
+        return json;
     }
 }

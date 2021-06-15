@@ -4,18 +4,13 @@ import com.elantsev.netology.moneytf.model.Card;
 import com.elantsev.netology.moneytf.model.Operation;
 import com.elantsev.netology.moneytf.model.Transaction;
 import com.elantsev.netology.moneytf.model.Verificator;
-import com.elantsev.netology.moneytf.service.TransferService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-@Configuration
-@ConfigurationProperties(prefix = "cards-list")
 public class TransferRepository {
 
     private final Map<String,Transaction> transactions = new HashMap<>();

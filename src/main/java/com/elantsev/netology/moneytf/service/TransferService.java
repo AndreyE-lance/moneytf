@@ -5,12 +5,17 @@ import com.elantsev.netology.moneytf.model.Transaction;
 import com.elantsev.netology.moneytf.model.Verificator;
 import com.elantsev.netology.moneytf.repository.TransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class TransferService {
+
+    private final TransferRepository trRepository;
+
     @Autowired
-    TransferRepository trRepository;
+    public TransferService(TransferRepository trRepository) {
+        this.trRepository = trRepository;
+    }
 
     public Operation transfer(Transaction transaction){
         return new Operation(trRepository.saveTransaction(transaction));
