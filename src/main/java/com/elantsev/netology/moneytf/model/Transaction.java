@@ -58,6 +58,6 @@ public class Transaction {
     public String toJSON(){
         Gson gson = new Gson();
         String json = gson.toJson(this);
-        return json;
+        return json.trim();
     }
 }
