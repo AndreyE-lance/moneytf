@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Transaction {
     private final Card cardFrom;
-    private final String cardToNumber;
+    private  String cardToNumber;
     private final Amount amount;
 
     public Transaction(String cardFromNumber,
@@ -58,6 +58,6 @@ public class Transaction {
     public String toJSON(){
         Gson gson = new Gson();
         String json = gson.toJson(this);
-        return json.trim();
+        return json;
     }
 }

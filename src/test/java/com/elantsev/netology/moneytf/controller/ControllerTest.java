@@ -4,6 +4,7 @@ import com.elantsev.netology.moneytf.model.Amount;
 import com.elantsev.netology.moneytf.model.Transaction;
 import com.elantsev.netology.moneytf.service.TransferService;
 
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -42,8 +43,9 @@ class ControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(transactionTest.toJSON()))
                 .andExpect(status().isOk());
-                //.andExpect(jsonPath("$.operationID", is(getUC(transactionTest))));//
-        verify(transferService).transfer(transactionTest);
+                //.andExpect(jsonPath("$.operationID", is(getUC(transactionTest))));
+        ArgumentCaptor<Transaction> argumentCaptor = ArgumentCaptor.forClass(Transaction.class);
+        verify(transferService).transfer(argumentCaptor.capture());//<- с каптором заработало!
     }
 
     public String getUC(Transaction tTest) {
@@ -55,4 +57,9 @@ class ControllerTest {
         return stringBuilder.toString();
     }
 
+    public Transaction fromJson(String jsonObj){
+        Gson gson = new Gson();
+        Transaction transaction = gson.fromJson(jsonObj, Transaction.class);
+        return transaction;
+    }
 }
