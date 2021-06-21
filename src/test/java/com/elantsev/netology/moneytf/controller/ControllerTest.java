@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 import static org.hamcrest.Matchers.hasSize;
@@ -32,25 +33,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         что у него был вызван нужный метод с правильными аргументами*/
 @RunWith(SpringRunner.class)
 @WebMvcTest(TransferController.class)
+
 class ControllerTest {
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
-    TransferService transferService;
+    TransferService transferService
 
     @Test
 
     public void transferTest() throws Exception {
         Amount amountTest = new Amount(10000, "RUR");
         Transaction transactionTest = new Transaction("1234123412341234", "12/21", "111", "4321432143214321", amountTest);
+        when(transferService.transfer(any())).thenReturn(new Operation("123"));
         mockMvc.perform(post("/transfer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(transactionTest.toJSON()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)));
-                //.andExpect(jsonPath("$", hasSize(1)))
-                //.andExpect(jsonPath("$.operationId", is(getUC(transactionTest))));
+                .andExpect(jsonPath("$").exists())
+                .andExpect(jsonPath("$.operationId", is("123")));
         ArgumentCaptor<Transaction> argumentCaptor = ArgumentCaptor.forClass(Transaction.class);
         verify(transferService).transfer(argumentCaptor.capture());//<- с каптором заработало!
     }
