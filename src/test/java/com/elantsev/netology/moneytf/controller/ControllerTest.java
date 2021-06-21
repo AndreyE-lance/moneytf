@@ -29,8 +29,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/*В тесте на контроллер можно также добавить verify на мок сервиса,
-        что у него был вызван нужный метод с правильными аргументами*/
 @RunWith(SpringRunner.class)
 @WebMvcTest(TransferController.class)
 
@@ -39,7 +37,7 @@ class ControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    TransferService transferService
+    TransferService transferService;
 
     @Test
 
