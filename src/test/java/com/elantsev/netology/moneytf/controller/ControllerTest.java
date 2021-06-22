@@ -44,7 +44,7 @@ class ControllerTest {
     public void transferTest() throws Exception {
         Amount amountTest = new Amount(10000, "RUR");
         Transaction transactionTest = new Transaction("1234123412341234", "12/21", "111", "4321432143214321", amountTest);
-        when(transferService.transfer(any())).thenReturn(new Operation("123"));
+        when(transferService.transfer(any())).thenReturn(new Operation("123"));//<- с any() заработало! Нельзя просто так взять и подсунуть transactionTest
         mockMvc.perform(post("/transfer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(transactionTest.toJSON()))
@@ -52,21 +52,8 @@ class ControllerTest {
                 .andExpect(jsonPath("$").exists())
                 .andExpect(jsonPath("$.operationId", is("123")));
         ArgumentCaptor<Transaction> argumentCaptor = ArgumentCaptor.forClass(Transaction.class);
-        verify(transferService).transfer(argumentCaptor.capture());//<- с каптором заработало!
+        verify(transferService).transfer(argumentCaptor.capture());//<- с каптором заработало! Нельзя просто так взять и подсунуть transactionTest
+        //Почему никто не любит transactionTest?
     }
 
-    public String getUC(Transaction tTest) {
-        long unixTime = System.currentTimeMillis() / 1000L;
-        String time = Long.toString(unixTime);
-        StringBuilder stringBuilder = new StringBuilder(time)
-                .append("D")
-                .append(tTest.hashCode());
-        return stringBuilder.toString();
-    }
-
-    public Transaction fromJson(String jsonObj){
-        Gson gson = new Gson();
-        Transaction transaction = gson.fromJson(jsonObj, Transaction.class);
-        return transaction;
-    }
 }
