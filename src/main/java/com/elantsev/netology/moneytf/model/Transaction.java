@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Transaction {
     private final Card cardFrom;
-    private  String cardToNumber;
+    private String cardToNumber;
     private final Amount amount;
 
     public Transaction(String cardFromNumber,
@@ -14,12 +14,12 @@ public class Transaction {
                        String cardFromCVV,
                        String cardToNumber,
                        Amount amount) {
-        this.cardFrom = new Card(cardFromNumber,cardFromValidTill,cardFromCVV,amount);
+        this.cardFrom = new Card(cardFromNumber, cardFromValidTill, cardFromCVV, amount);
         this.cardToNumber = cardToNumber;
         this.amount = amount;
     }
 
-    public Card getCardFrom(){
+    public Card getCardFrom() {
         return this.cardFrom;
     }
 
@@ -34,7 +34,7 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{ " +
-                cardFrom.toString()+" "+
+                cardFrom.toString() + " " +
                 ", cardToNumber='" + cardToNumber + '\'' +
                 ", amount=" + amount +
                 '}';
@@ -55,7 +55,7 @@ public class Transaction {
         return Objects.hash(cardFrom, cardToNumber, amount);
     }
 
-    public String toJSON(){
+    public String toJSON() {
         Gson gson = new Gson();
         String json = gson.toJson(this);
         return json;

@@ -17,11 +17,11 @@ public class TransferService {
         this.trRepository = trRepository;
     }
 
-    public Operation transfer(Transaction transaction){
+    public Operation transfer(Transaction transaction) {
         return new Operation(trRepository.saveTransaction(transaction));
     }
 
-    public Operation confirmOperation(Verificator verificator){
+    public Operation confirmOperation(Verificator verificator) {
         return trRepository.confirmOperation(verificator);
     }
 }

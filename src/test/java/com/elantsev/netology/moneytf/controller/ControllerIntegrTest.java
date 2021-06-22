@@ -28,7 +28,7 @@ public class ControllerIntegrTest {
     }
 
     @Test
-    public void ControllerTest(){
+    public void ControllerTest() {
         ServletContext servletContext = webApplicationContext.getServletContext();
         Assert.assertNotNull(servletContext);
         Assert.assertTrue(servletContext instanceof MockServletContext);

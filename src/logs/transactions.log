@@ -49,3 +49,6 @@ INFO	2021-06-15 16:37:53,025	10	transferLog	[main]	Перевод подтвержден Verificat
 INFO	2021-06-15 16:40:05,840	0	transferLog	[main]	Перевод подтвержден Verificator{operationId='12341234231D32244', code='0000'}
 INFO	2021-06-15 16:40:05,867	27	transferLog	[main]	ЗАПРОС НА ПЕРЕВОД 1623757205D-1317387903 Transaction{ Card{cardNumber='1234123412341243', amount=Amount{value=1000, currency='RUR'}} , cardToNumber='4321432143214321', amount=Amount{value=1000, currency='RUR'}}
 INFO	2021-06-15 16:40:05,868	28	transferLog	[main]	Перевод подтвержден Verificator{operationId='12341234231D32244', code='0000'}
+INFO	2021-06-22 08:51:10,166	0	transferLog	[main]	Перевод подтвержден Verificator{operationId='12341234231D32244', code='0000'}
+INFO	2021-06-22 08:51:10,247	81	transferLog	[main]	ЗАПРОС НА ПЕРЕВОД 1624333870D648007128 Transaction{ Card{cardNumber='1234123412341243', amount=Amount{value=1000, currency='RUR'}} , cardToNumber='4321432143214321', amount=Amount{value=1000, currency='RUR'}}
+INFO	2021-06-22 08:51:10,251	85	transferLog	[main]	Перевод подтвержден Verificator{operationId='12341234231D32244', code='0000'}
