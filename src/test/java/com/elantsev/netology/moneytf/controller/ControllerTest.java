@@ -33,16 +33,18 @@ class ControllerTest {
     public void transferTest() throws Exception {
         Amount amountTest = new Amount(10000, "RUR");
         Transaction transactionTest = new Transaction("1234123412341234", "12/21", "111", "4321432143214321", amountTest);
-        when(transferService.transfer(any())).thenReturn(new Operation("123"));//<- с any() заработало! Нельзя просто так взять и подсунуть transactionTest
+        when(transferService.transfer(transactionTest)).thenReturn(new Operation("123"));
         mockMvc.perform(post("/transfer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(transactionTest.toJSON()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").exists())
                 .andExpect(jsonPath("$.operationId", is("123")));
-        ArgumentCaptor<Transaction> argumentCaptor = ArgumentCaptor.forClass(Transaction.class);
-        verify(transferService).transfer(argumentCaptor.capture());//<- с каптором заработало! Нельзя просто так взять и подсунуть transactionTest
+        verify(transferService).transfer(transactionTest);
         //Почему никто не любит transactionTest?
+        //Потому, что нужно определять equals и hashCode не только в
+        //Transaction, но еще и в тех классах, которые он использует
+        //таких, как Card и Amount.
     }
 
 }

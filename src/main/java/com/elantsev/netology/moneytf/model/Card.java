@@ -39,4 +39,20 @@ public class Card {
                 ", amount=" + amount +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Card)) return false;
+        Card card = (Card) o;
+        return Objects.equals(cardNumber, card.cardNumber) &&
+                Objects.equals(expirDate, card.expirDate) &&
+                Objects.equals(cardCvv, card.cardCvv) &&
+                Objects.equals(amount, card.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cardNumber, expirDate, cardCvv, amount);
+    }
 }
